@@ -7,6 +7,7 @@
     tools:context=".contactFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerContactos"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

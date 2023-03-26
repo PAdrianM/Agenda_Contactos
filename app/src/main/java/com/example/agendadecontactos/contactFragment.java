@@ -5,13 +5,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.agendadecontactos.db.DatabaseContactos;
+
 
 public class contactFragment extends Fragment {
+
+    RecyclerView recycler;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -43,10 +49,17 @@ public class contactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        com.example.agendadecontactos.DatabaseContactos databaseContactos = new DatabaseContactos(requireContext());
-        databaseContactos.getAllPeople();
+        View view = inflater.inflate(R.layout.fragment_contact, container, false);
+        com.example.agendadecontactos.db.DatabaseContactos databaseContactos = new DatabaseContactos(requireContext());
+        databaseContactos.obtenerContactos();
+
+        recycler = view.findViewById(R.id.recyclerContactos);
+        AdapterContacs adapterContacs = new AdapterContacs(databaseContactos.obtenerContactos());
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycler.setAdapter(adapterContacs);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+        return view;
     }
 }

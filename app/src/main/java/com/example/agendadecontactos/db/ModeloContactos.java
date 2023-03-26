@@ -7,6 +7,9 @@ public class ModeloContactos {
     private String etiqueta;
     private boolean favoritos;
 
+    public ModeloContactos() {
+    }
+
     public ModeloContactos(String nombre, String telefono, String apellido, String etiqueta, boolean favoritos) {
         this.nombre = nombre;
         this.telefono = telefono;
