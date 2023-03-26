@@ -13,9 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.agendadecontactos.db.DatabaseContactos;
+import com.example.agendadecontactos.db.ModeloContactos;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class contactFragment extends Fragment {
+
+    private List<ModeloContactos> listaOrdenada;
 
     RecyclerView recycler;
 
@@ -51,10 +60,20 @@ public class contactFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
         com.example.agendadecontactos.db.DatabaseContactos databaseContactos = new DatabaseContactos(requireContext());
+
         databaseContactos.obtenerContactos();
+        listaOrdenada = new ArrayList<>();
+        listaOrdenada = databaseContactos.obtenerContactos();
+        Collections.sort(listaOrdenada, new Comparator<ModeloContactos>() {
+
+            @Override
+            public int compare(ModeloContactos c1, ModeloContactos c2) {
+                return c1.getNombre().compareToIgnoreCase(c2.getNombre());
+            }
+        });
 
         recycler = view.findViewById(R.id.recyclerContactos);
-        AdapterContacs adapterContacs = new AdapterContacs(databaseContactos.obtenerContactos());
+        AdapterContacs adapterContacs = new AdapterContacs(listaOrdenada);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         recycler.setAdapter(adapterContacs);
