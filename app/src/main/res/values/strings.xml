@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Agenda de contactos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="sitios">
+        <item>Telefono de Casa</item>
+        <item>Celular</item>
+        <item>Telefono de Oficina</item>
+        <item>Otros</item>
+    </string-array>
+</resources>

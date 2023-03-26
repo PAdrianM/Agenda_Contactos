@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/prueba"
+    app:startDestination="@id/favoritesFragment">
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.agendadecontactos.favoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.agendadecontactos.contactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/tecladoActividad"
+        android:name="com.example.agendadecontactos.tecladoActividad"
+        android:label="fragment_teclado_actividad"
+        tools:layout="@layout/fragment_teclado_actividad" />
+</navigation>
