@@ -13,8 +13,6 @@ import java.util.List;
 
 public class DatabaseContactos extends Database{
 
-
-
     Context context;
 
 
@@ -59,7 +57,6 @@ public class DatabaseContactos extends Database{
                 modeloContactos.setEtiqueta(cursorContactos.getString(4));
                 contactoLista.add(modeloContactos);
             }while (cursorContactos.moveToNext());
-
         }
         cursorContactos.close();
 

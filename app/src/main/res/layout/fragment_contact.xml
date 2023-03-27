@@ -10,7 +10,8 @@
     <SearchView
         android:id="@+id/buscarContacto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/Anti_flash_white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

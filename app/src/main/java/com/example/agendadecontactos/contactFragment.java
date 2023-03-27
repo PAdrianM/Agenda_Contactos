@@ -98,9 +98,6 @@ public class contactFragment extends Fragment {
                 return true;
             }
         });
-//        buscarContactos("Alex");
-        // Inflate the layout for this fragment
-
         return view;
     }
     private void buscarContactos(String terminoBusqueda) {
@@ -112,7 +109,5 @@ public class contactFragment extends Fragment {
         }
         adapter = new AdapterContacs(contactosEncontrados);
         recycler.setAdapter(adapter);
-//        adapter.setContactos(contactosEncontrados);
-//        adapter.notifyDataSetChanged();
     }
 }

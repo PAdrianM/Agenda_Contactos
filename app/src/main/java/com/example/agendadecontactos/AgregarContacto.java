@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +83,22 @@ public class AgregarContacto extends Fragment {
         spinnerTelefonos = getView().findViewById(R.id.spinnerSitios);
         btnGuardar = view.findViewById(R.id.button);
         addFavoritos = view.findViewById(R.id.chkFavoritos);
+        txtNumeroTelefono.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                validar();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,5 +127,13 @@ public class AgregarContacto extends Fragment {
         txtNombre.setText("");
         txtApellido.setText("");
         txtNumeroTelefono.setText("");
+    }
+    private void validar(){
+        String textoNombre = txtNombre.getText().toString();
+        String texotApellido = txtApellido.getText().toString();
+        String textoTelefono = txtNumeroTelefono.getText().toString();
+        if (!TextUtils.isEmpty(textoNombre)&&!TextUtils.isEmpty(texotApellido) && textoTelefono.length() == 8){
+            btnGuardar.setEnabled(true);
+        }
     }
 }
