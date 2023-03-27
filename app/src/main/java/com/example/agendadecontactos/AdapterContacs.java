@@ -21,6 +21,9 @@ public class AdapterContacs extends RecyclerView.Adapter<AdapterContacs.ViewHold
     public AdapterContacs(List<ModeloContactos> list) {
         this.list = list;
     }
+    public void setContactos(List<ModeloContactos> contactos) {
+        list = contactos;
+    }
 
     @NonNull
     @Override
@@ -51,7 +54,7 @@ public class AdapterContacs extends RecyclerView.Adapter<AdapterContacs.ViewHold
             String inicial = String.valueOf(modeloContactos.getNombre().charAt(0));
             //char inicialMayus= Character.toUpperCase(inicial);
             txtLetraInicial.setText(inicial);
-
         }
     }
+
 }

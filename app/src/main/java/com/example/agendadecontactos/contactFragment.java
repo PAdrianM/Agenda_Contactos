@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.agendadecontactos.db.DatabaseContactos;
 import com.example.agendadecontactos.db.ModeloContactos;
@@ -23,6 +24,10 @@ import java.util.stream.Collectors;
 
 
 public class contactFragment extends Fragment {
+
+    SearchView svBuscarContacto;
+
+    AdapterContacs adapter;
 
     private List<ModeloContactos> listaOrdenada;
 
@@ -58,8 +63,12 @@ public class contactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
         com.example.agendadecontactos.db.DatabaseContactos databaseContactos = new DatabaseContactos(requireContext());
+
+        svBuscarContacto = view.findViewById(R.id.buscarContacto);
 
         databaseContactos.obtenerContactos();
         listaOrdenada = new ArrayList<>();
@@ -73,12 +82,37 @@ public class contactFragment extends Fragment {
         });
 
         recycler = view.findViewById(R.id.recyclerContactos);
-        AdapterContacs adapterContacs = new AdapterContacs(listaOrdenada);
+        adapter = new AdapterContacs(listaOrdenada);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycler.setAdapter(adapterContacs);
+        recycler.setAdapter(adapter);
 
+        svBuscarContacto.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                buscarContactos(s);
+                return true;
+            }
+        });
+//        buscarContactos("Alex");
         // Inflate the layout for this fragment
+
         return view;
+    }
+    private void buscarContactos(String terminoBusqueda) {
+        List<ModeloContactos> contactosEncontrados = new ArrayList<>();
+        for (ModeloContactos contacto : listaOrdenada) {
+            if (contacto.getNombre().toLowerCase().contains(terminoBusqueda.toLowerCase())) {
+                contactosEncontrados.add(contacto);
+            }
+        }
+        adapter = new AdapterContacs(contactosEncontrados);
+        recycler.setAdapter(adapter);
+//        adapter.setContactos(contactosEncontrados);
+//        adapter.notifyDataSetChanged();
     }
 }

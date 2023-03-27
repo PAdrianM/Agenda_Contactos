@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import com.example.agendadecontactos.db.DatabaseContactos;
 
 
 public class AgregarContacto extends Fragment {
+
+    contactFragment contacto = new contactFragment();
     EditText txtNumeroTelefono,txtNombre,txtApellido;
 
     Spinner spinnerTelefonos;
@@ -96,6 +99,8 @@ public class AgregarContacto extends Fragment {
                     Toast.makeText(getContext(), "REGISTRO NO GUARDADO", Toast.LENGTH_LONG).show();
                     limpiar();
                 }
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frame_container, contacto).commit();
             }
         });
     }

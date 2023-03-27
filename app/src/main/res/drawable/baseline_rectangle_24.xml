@@ -3,7 +3,7 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="260"
-    android:tint="@color/Celadon_fuerte">
+    android:tint="@color/Anti_flash_white">
   <path
       android:fillColor="@color/Celadon_fuerte"
       android:pathData="M2,4h20v16h-20z"/>

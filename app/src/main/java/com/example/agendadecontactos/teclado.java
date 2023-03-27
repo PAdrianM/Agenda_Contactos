@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class teclado extends Fragment {
     AgregarContacto agregar = new AgregarContacto();
@@ -64,10 +65,16 @@ public class teclado extends Fragment {
             @Override
             public void onClick(View v) {
                 // Paso 5: Crear instancia del fragmento de destino y asignar valor al dato numérico.
-                Bundle bundle = new Bundle();
-                bundle.putString("numero", txtNumerico.getText().toString().trim());
-                txtNumerico.setText("");
-                getParentFragmentManager().setFragmentResult("key", bundle);
+                if (txtNumerico.length() == 8){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("numero", txtNumerico.getText().toString().trim());
+                    getParentFragmentManager().setFragmentResult("key", bundle);
+                    txtNumerico.setText("");
+                }else {
+                    txtNumerico.setText("");
+                    Toast.makeText(getContext(), "VUELVA A INGRESAR EL NUMERO", Toast.LENGTH_LONG).show();
+                }
+
 
                 // Paso 6: Utilizar FragmentManager para reemplazar el fragmento actual por el fragmento de destino.
                 FragmentManager fragmentManager = getFragmentManager();
