@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.fragmentoContacto:
                     loadFragment(mFirstFragment);
-                    fab.setVisibility(View.GONE);
+                    fab.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.fragmentoFavoritos:
                     loadFragment(mSecondFragment);
